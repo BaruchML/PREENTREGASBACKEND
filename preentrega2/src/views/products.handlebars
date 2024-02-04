@@ -1,14 +1,18 @@
 <div>
     <h1>Products</h1>
-    {{#each products}}
-        <p><strong>Nombre: </strong>{{this.title}} <strong>Email:</strong>{{this.description}}</p>
+    {{#each payload}}
+        <p><strong>Nombre: </strong>{{this.title}} 
+        <strong>description:</strong>{{this.description}}
+        <strong>Precio:${{this.price}}</strong>
+        <strong>Stock:{{this.stock}}</strong>
+        </p>
     {{/each}}
     {{#if hasPrevPage}}
-    <a href="/products?pageQuery={{prevPage}}">Anterior</a>
+    <a href="/products?limit={{linkLimit}}&pageQuery={{prevPage}}">Anterior</a>
     {{/if }}
     <label>{{page}}</label>
     {{#if hasNextPage}}
-    <a href="/products?pageQuery={{nextPage}}">Siguiente</a>
+    <a href="/products?limit={{linkLimit}}&pageQuery={{nextPage}}">Siguiente</a>
     {{/if }}
     
 </div>

@@ -7,6 +7,7 @@ const productsSchema = new Schema({
     description:String,
     price: Number,
     stock:Number,
+    category:String,
     quantity: {
         type: Number,
         default: 1

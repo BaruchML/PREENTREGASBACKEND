@@ -51,10 +51,10 @@ router
         try {
             // const { body } = req
             const result = await productsModel.create({
-                title: 'Producto Dos',
+                title: 'Producto Diez',
                 description: 'Este es un producto',
-                price: 100,
-                stock: 150
+                price: 110,
+                stock: 70
             })
             res.send({
                 status: 'Success',

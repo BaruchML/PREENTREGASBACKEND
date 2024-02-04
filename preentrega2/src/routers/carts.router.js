@@ -49,7 +49,7 @@ router
 
     })
     //meter 1 producto a un array de un carrito
-    .put('/:cid/:pid', async (req,res)=>{
+    .put('/:cid/products/:pid', async (req,res)=>{
         try {
             const {cid,pid} = req.params
             const cart = await cartsModel.findById({_id:cid}) 
@@ -76,6 +76,24 @@ router
             const deleteCart = await cartsModel.findByIdAndUpdate({ _id: cid }, ({ isActive: false }))
             res.send({
                 status: 'Success, cart delete'
+            })
+        } catch (error) {
+
+        }
+
+
+    })
+    .delete('/:cid/products/:pid', async (req, res) => {
+        try {
+            const { cid,pid } = req.params
+            const cart = await cartsModel.findOne({_id:cid})
+            // const product = cart.products.find(p => p._id === pid)
+            
+            // const deleteProduct = await cartsModel.findByIdAndUpdate({ _id: cid }, ({ isActive: false }))
+            res.send({
+                status: 'Success, cart delete',
+                res:cart,
+                // res2:product
             })
         } catch (error) {
 
