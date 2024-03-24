@@ -34,8 +34,7 @@ export class UserController {
     createUser = async (req, res) => {
         try {
             const { first_name, last_name, email, age, password, role } = req.body
-
-            const userCart = await this.serviceCart.createCart()
+            let carts = []
             const newUser = {
                 first_name,
                 last_name,
@@ -43,14 +42,23 @@ export class UserController {
                 age,
                 password,
                 role,
-                userCart
+                carts
             }
-            console.log(newUser);
+            const newCart = {
+                title:`${newUser.first_name} Cart`,
+                emailUser: `${newUser.email}`
+        }
+            const cartDao = await this.serviceCart.createCart(newCart)
+            const cart = await this.serviceCart.getCartBy({emailUser:`${newUser.email}`})
+           
+            const user = await this.services.createUser(newUser)
+            const userDao = await this.services.getUserBy({email:`${newUser.email}`})
+            userDao.carts.push({cart})
+            const finallUser = await this.services.updateUser(userDao._id,userDao)
 
-            const result = await this.services.createUser(newUser)
             res.send({
                 status: 'Success',
-                usersCreate: result
+                usersCreate: finallUser
             })
         } catch (error) {
             console.log(error);

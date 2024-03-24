@@ -52,7 +52,7 @@ export class CartController {
         try {
             const { cid, pid } = req.params
             const product = await this.serviceProduct.getProductBy(pid)
-            const cart = await this.service.getCartBy(cid)
+            const cart = await this.service.getCartBy({_id:cid})
 
             cart.products.push({ product })
             let result = await this.service.updateCart(cid, cart)

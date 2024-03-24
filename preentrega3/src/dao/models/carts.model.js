@@ -4,6 +4,10 @@ const collection = 'carts'
 
 const cartsSchema = new Schema({
     title: String,
+    emailUser: {
+        type:String,
+        unique:true
+    },
     products:{
         type:[{
             product:{

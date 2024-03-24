@@ -7,7 +7,7 @@ class CartDaoMongo {
 
     get = async () => await this.model.find({ isActive: true })
 
-    getBy = async (filter) => await this.model.findOne({ _id: filter })// ?? asi funcionara?
+    getBy = async (filter) => await this.model.findOne(filter)// ?? asi funcionara?
 
     create = async (newCart) => await this.model.create(newCart)// ?? asi funcionara?
 
